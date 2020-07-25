@@ -58,14 +58,31 @@ def main():
 
     model = classify_randomforests(X_scaled, y, X_train, X_test, y_train, y_test)
 
+    print("Finished modelling\n")
 
-def predict_single(model, PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Cabin, Embarked):
-    # Given parameters, predict a single user
+    print(f"Single prediction:\n{predict_single(model, 904, 1, 0, 23, 1, 0, 82.2667, 1, 'S')}")
 
-    # TODO: make a dataframe, with the format and encoding used when training the model, with each parameter
+
+def predict_single(model, passenger_id, pclass, Sex, Age, SibSp, Parch, Fare, Cabin, Embarked):
+    # Given parameters, predict a single user. All data entries must be nonempty.
+
     data = {
-
+        "PassengerId": passenger_id,
+        "Pclass": pclass,
+        "Sex": Sex,
+        "Age": Age,
+        "SibSp": SibSp,
+        "Parch": Parch,
+        "Fare": Fare,
+        "Cabin": Cabin,
+        "Embarked": Embarked
     }
+    df = pd.DataFrame.from_dict(data)
+    df = pd.get_dummies(df)
+    scaler = MinMaxScaler()
+    df_scaled = scaler.fit_transform(df)
+
+    return model.predict(df_scaled)
 
 
 def classify_randomforests(X_scaled, y, X_train, X_test, y_train, y_test):
