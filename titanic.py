@@ -49,7 +49,6 @@ def main():
     test_df = test_df.drop(['Name'], axis=1)
     test_df = test_df.drop(['Ticket'], axis=1)
     test_df = test_df.fillna(0)
-    print("Shape before One-Hot-Encoding: {}".format(test_df.shape))
 
     print("Done.\n")
 
@@ -59,30 +58,29 @@ def main():
     model = classify_randomforests(X_scaled, y, X_train, X_test, y_train, y_test)
 
     print("Finished modelling\n")
+    # print(f"Format of the dataset after all the encoding:\n{X_train[0]}")
+    print(f"Shape of the dataset:\n{X_train.shape}")
+    # print(f"Type of the dataset:\n{type(X_train)}")
+    prediction = predict_single(model, train_df, 892, 1, 'male', 23, 1, 0, 82.2667, 'C156', 'S')
+    print(f"Single prediction:")
+    if prediction:
+        print("You survived, congrats!")
+    else:
+        print("Sorry, you died.")
 
-    print(f"Single prediction:\n{predict_single(model, 904, 1, 0, 23, 1, 0, 82.2667, 1, 'S')}")
 
-
-def predict_single(model, passenger_id, pclass, Sex, Age, SibSp, Parch, Fare, Cabin, Embarked):
+def predict_single(model, train_df, passenger_id, pclass, sex, age, sibsp, parch, fare, cabin, embarked):
     # Given parameters, predict a single user. All data entries must be nonempty.
 
-    data = {
-        "PassengerId": passenger_id,
-        "Pclass": pclass,
-        "Sex": Sex,
-        "Age": Age,
-        "SibSp": SibSp,
-        "Parch": Parch,
-        "Fare": Fare,
-        "Cabin": Cabin,
-        "Embarked": Embarked
-    }
-    df = pd.DataFrame.from_dict(data)
-    df = pd.get_dummies(df)
+    df = [passenger_id, pclass, sex, age, sibsp, parch, fare, cabin, embarked]
+    train_df.loc[len(train_df)] = df
+    train_df = train_df.fillna(0)
+    train_df = pd.get_dummies(train_df)
     scaler = MinMaxScaler()
-    df_scaled = scaler.fit_transform(df)
-
-    return model.predict(df_scaled)
+    df_scaled = scaler.fit_transform(train_df)
+    df_scaled = np.delete(df_scaled, -1, 1)
+    print(f"Shape:\n{df_scaled.shape}")
+    return model.predict(df_scaled[-1].reshape(1, -1))
 
 
 def classify_randomforests(X_scaled, y, X_train, X_test, y_train, y_test):
