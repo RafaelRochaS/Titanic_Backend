@@ -13,7 +13,8 @@ from sklearn.model_selection import GridSearchCV
 class Titanic:
 
     # TODO: change print to logging
-    # Todo: Add documentation
+    # TODO: Add documentation
+    # TODO: Add type hints to the methods
 
     def __init__(self, debug=False, jobs=-1):
         self.jobs = jobs
