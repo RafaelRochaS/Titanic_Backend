@@ -1,65 +1,38 @@
 aiofiles==0.5.0
-attrs @ file:///tmp/build/80754af9/attrs_1600298409949/work
 backcall==0.2.0
 bandit==1.6.2
 brotlipy==0.7.0
 certifi==2020.6.20
-cffi @ file:///tmp/build/80754af9/cffi_1600699146221/work
 chardet==3.0.4
 click==7.1.2
 coverage==5.3
-coveralls @ file:///tmp/build/80754af9/coveralls_1597334783710/work
-cryptography @ file:///tmp/build/80754af9/cryptography_1598892038851/work
 cycler==0.10.0
 decorator==4.4.2
 docopt==0.6.2
-fastapi @ file:///home/conda/feedstock_root/build_artifacts/fastapi_1595264771260/work
 flake8==3.8.3
-gitdb @ file:///home/conda/feedstock_root/build_artifacts/gitdb_1588651542737/work
-GitPython @ file:///home/conda/feedstock_root/build_artifacts/gitpython_1599191045865/work
 graphene==1.4
-graphql-core @ file:///home/conda/feedstock_root/build_artifacts/graphql-core_1593979029761/work
 graphql-relay==3.0.0
 gunicorn==20.0.4
 h11==0.8.1
 httptools==0.1.1
-idna @ file:///tmp/build/80754af9/idna_1593446292537/work
-importlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1593446406207/work
-iniconfig @ file:///tmp/build/80754af9/iniconfig_1596827328212/work
-ipython @ file:///tmp/build/80754af9/ipython_1598883821407/work
 ipython-genutils==0.2.0
 itsdangerous==1.1.0
-jedi @ file:///tmp/build/80754af9/jedi_1598371611696/work
 Jinja2==2.11.2
-joblib @ file:///tmp/build/80754af9/joblib_1594236160679/work
 kiwisolver==1.2.0
 MarkupSafe==1.1.1
-matplotlib @ file:///tmp/build/80754af9/matplotlib-base_1597876319132/work
 mccabe==0.6.1
 mkl-fft==1.2.0
 mkl-random==1.1.1
 mkl-service==2.3.0
-more-itertools @ file:///tmp/build/80754af9/more-itertools_1598884071673/work
-numpy @ file:///tmp/build/80754af9/numpy_and_numpy_base_1596233721170/work
 olefile==0.46
 packaging==20.4
-pandas @ file:///tmp/build/80754af9/pandas_1598371468004/work
 parso==0.7.0
-pbr @ file:///home/conda/feedstock_root/build_artifacts/pbr_1598996708473/work
 pexpect==4.8.0
 pickleshare==0.7.5
-Pillow @ file:///tmp/build/80754af9/pillow_1594307295532/work
 pluggy==0.13.1
-promise @ file:///tmp/build/80754af9/promise_1598040852418/work
-prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1598885458782/work
 ptyprocess==0.6.0
-py @ file:///tmp/build/80754af9/py_1593446248552/work
 pycodestyle==2.6.0
-pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
-pydantic @ file:///home/conda/feedstock_root/build_artifacts/pydantic_1594889015043/work
 pyflakes==2.2.0
-Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
-pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1594392929924/work
 pyparsing==2.4.7
 PySocks==1.7.1
 pytest==6.0.2
@@ -67,23 +40,10 @@ python-dateutil==2.8.1
 python-multipart==0.0.5
 pytz==2020.1
 PyYAML==5.3.1
-requests @ file:///tmp/build/80754af9/requests_1592841827918/work
-scikit-learn @ file:///tmp/build/80754af9/scikit-learn_1598376899566/work
-scipy @ file:///tmp/build/80754af9/scipy_1597686649129/work
 sip==4.19.13
 six==1.15.0
-smmap @ file:///home/conda/feedstock_root/build_artifacts/smmap_1588651577140/work
-starlette @ file:///home/conda/feedstock_root/build_artifacts/starlette_1588747653335/work
-stevedore @ file:///home/conda/feedstock_root/build_artifacts/stevedore_1599859024505/work
-threadpoolctl @ file:///tmp/tmp9twdgx9k/threadpoolctl-2.1.0-py3-none-any.whl
-toml @ file:///tmp/build/80754af9/toml_1592853716807/work
 tornado==6.0.4
-traitlets @ file:///tmp/build/80754af9/traitlets_1600712396819/work
-ujson @ file:///tmp/build/80754af9/ujson_1600709327301/work
-urllib3 @ file:///tmp/build/80754af9/urllib3_1597086586889/work
-uvicorn @ file:///home/conda/feedstock_root/build_artifacts/uvicorn_1589288729898/work
 uvloop==0.14.0
-wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
 websockets==8.1
 wsproto==0.13.0
 zipp==3.1.0
