@@ -1,14 +1,25 @@
 version: 2.1
 
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.2
+
 jobs:
     build:
         docker:
             - image: circleci/python:3.8
         steps:
             - checkout
+            - run: sudo pip install -r requirements.txt
+            #- run: sudo pip install .
+            #- run: pytest --cov-report xml --cov=titan_app/views/ titan_app/tests/
+            #- run: coveralls
+            - run: flake8 --ignore W293 titanic_app/Views/
+            - run: bandit -r titanic_app/Views/
+            - sonarcloud/scan
 
 workflows:
     version: 2.1
     main:
         jobs:
-            - build
+            - build:
+                context: SonarCloud
