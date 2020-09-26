@@ -7,6 +7,8 @@ jobs:
     build-test:
         docker:
             - image: circleci/python:3.8
+            environment:
+                PIPENV_VENV_IN_PROJECT: true
         steps:
             - checkout
             - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -14,13 +16,13 @@ jobs:
             - restore_cache:  # ensure this step occurs *before* installing dependencies
                 key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
             - run: sudo pip install pipenv
+            - run: pipenv install
             - save_cache:
                 key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
                 paths:
                 - ".venv"
                 - "/usr/local/bin"
                 - "/usr/local/lib/python3.8/site-packages"
-            - run: sudo pip install -r requirements.txt
             #- run: sudo pip install .
             #- run: pytest --cov-report xml --cov=titan_app/views/ titan_app/tests/
             #- run: coveralls
