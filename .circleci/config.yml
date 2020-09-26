@@ -13,10 +13,7 @@ jobs:
             - run: sudo chown -R circleci:circleci /usr/local/lib/python3.8/site-packages
             - restore_cache:  # ensure this step occurs *before* installing dependencies
                 key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-            - run:
-                command: |
-                sudo pip install pipenv
-                pipenv install
+            - run: sudo pip install pipenv
             - save_cache:
                 key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
                 paths:
