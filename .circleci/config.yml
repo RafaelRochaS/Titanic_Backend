@@ -1,14 +1,38 @@
 version: 2.1
 
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.2
+
 jobs:
-    build:
+    build-test:
         docker:
             - image: circleci/python:3.8
+              environment:
+                PIPENV_VENV_IN_PROJECT: true
         steps:
             - checkout
+            - run: sudo chown -R circleci:circleci /usr/local/bin
+            - run: sudo chown -R circleci:circleci /usr/local/lib/python3.8/site-packages
+            - restore_cache:  # ensure this step occurs *before* installing dependencies
+                key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+            - run: sudo pip install pipenv
+            - run: pipenv install
+            - save_cache:
+                key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+                paths:
+                - ".venv"
+                - "/usr/local/bin"
+                - "/usr/local/lib/python3.8/site-packages"
+            #- run: sudo pip install .
+            #- run: pytest --cov-report xml --cov=titan_app/views/ titan_app/tests/
+            #- run: coveralls
+            - run: pipenv run flake8 --ignore W293 titanic_app/Views/
+            - run: pipenv run bandit -r titanic_app/Views/
+            - sonarcloud/scan
 
 workflows:
     version: 2.1
     main:
         jobs:
-            - build:
+            - build-test:
+                context: SonarCloud
