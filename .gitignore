@@ -8,6 +8,10 @@ __pycache__/
 
 .vscode/
 
+titanic.py
+
+*.csv
+
 # Distribution / packaging
 .Python
 build/
