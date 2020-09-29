@@ -9,6 +9,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import GridSearchCV
 
+# saving
+import pickle
+
 
 class Titanic:
 
@@ -38,6 +41,7 @@ class Titanic:
         X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, random_state=0)
 
         self.model = self.__classify_random_forests(X_scaled, y, X_train, X_test, y_train, y_test)
+
 
     def __preprocessor(self):
 
@@ -118,3 +122,4 @@ class Titanic:
             print("RandomForests - Best estimator: {}\n".format(grid_search_Forest.best_estimator_))
 
         return grid_search_Forest
+
