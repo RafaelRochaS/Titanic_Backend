@@ -26,8 +26,8 @@ jobs:
             #- run: sudo pip install .
             #- run: pytest --cov-report xml --cov=titan_app/views/ titan_app/tests/
             #- run: coveralls
-            - run: pipenv run flake8 --ignore W293 titanic_app/Views/
-            - run: pipenv run bandit -r titanic_app/Views/
+            - run: pipenv run flake8 --ignore W293 src/
+            - run: pipenv run bandit -r src/
             - sonarcloud/scan
 
 workflows:
