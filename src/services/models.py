@@ -14,9 +14,10 @@ class TitanicModelService():
         self.model = joblib.load(self.path)
 
     def predict(self, payload: TitanicPredictionPayload):
+        # Change this
         if payload is None:
             raise ValueError(INVALID_PAYLOAD.format(payload))
 
-        prediction = self.model.predict(payload_to_list(payload))
+        prediction = self.model.predict_single(*payload_to_list(payload))
 
-        return prediction
+        return prediction[0]

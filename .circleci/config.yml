@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.2
+  heroku: circleci/heroku@1.2.2
 
 jobs:
     build-test:
@@ -29,6 +30,12 @@ jobs:
             - run: pipenv run flake8 --ignore W293 src/
             - run: pipenv run bandit -r src/
             - sonarcloud/scan
+    deploy-develop:
+        executor: heroku/default
+        steps:
+        - checkout
+        - heroku/install
+        - heroku/deploy-via-git
 
 workflows:
     version: 2.1
@@ -36,3 +43,10 @@ workflows:
         jobs:
             - build-test:
                 context: SonarCloud
+            - deploy-develop:
+                requires:
+                    - build-test
+                filters:
+                    branches:
+                        only:
+                            - develop
