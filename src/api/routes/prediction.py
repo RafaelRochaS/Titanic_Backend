@@ -16,6 +16,8 @@ def predict(
 ) -> TitanicPredictionResult:
 
     model: TitanicModelService = request.app.state.model
-    prediction: TitanicPredictionResult = model.predict(block_data)
+    prediction = model.predict(block_data)
 
-    return prediction
+    result = TitanicPredictionResult(survived=prediction)
+
+    return result

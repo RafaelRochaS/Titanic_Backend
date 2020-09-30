@@ -9,9 +9,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import GridSearchCV
 
-# saving
-import pickle
-
 
 class Titanic:
 
@@ -22,7 +19,6 @@ class Titanic:
     def __init__(self, debug=False, jobs=-1):
         self.jobs = jobs
         self.debug = debug
-        self.__X_train = ""
         self.__train_df = ""
         self.model = ""
 
@@ -38,10 +34,10 @@ class Titanic:
             print("Parsing data with pandas... ")
         self.__train_df = pd.read_csv('train.csv')
         X_scaled, y = self.__preprocessor()
-        X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, random_state=0)
+        X_train, X_test, y_train, y_test = train_test_split(X_scaled, y,
+                                                            random_state=0)
 
         self.model = self.__classify_random_forests(X_scaled, y, X_train, X_test, y_train, y_test)
-
 
     def __preprocessor(self):
 
@@ -79,10 +75,13 @@ class Titanic:
         # Wrapper for the __predict_single method
         # TODO: Find a better way to do this
         prediction = self.__predict_single(passenger_id, pclass, sex, age, sibsp, parch, fare, cabin, embarked)
+
         if prediction:
             print("You survived, congrats!")
         else:
             print("Sorry, you died.")
+        
+        return prediction
 
     def __predict_single(self, passenger_id, pclass, sex, age, sibsp, parch, fare, cabin, embarked):
         # Given parameters, predict a single user. All data entries must be nonempty.
@@ -122,4 +121,3 @@ class Titanic:
             print("RandomForests - Best estimator: {}\n".format(grid_search_Forest.best_estimator_))
 
         return grid_search_Forest
-
